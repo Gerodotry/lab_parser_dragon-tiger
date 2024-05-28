@@ -1,0 +1,2694 @@
+Terminals unused in grammar
+
+    "{"
+    "}"
+    TYPE
+    OF
+
+
+State 29 conflicts: 8 shift/reduce
+State 63 conflicts: 8 shift/reduce
+State 64 conflicts: 8 shift/reduce
+State 65 conflicts: 8 shift/reduce
+State 66 conflicts: 8 shift/reduce
+State 67 conflicts: 8 shift/reduce
+State 68 conflicts: 12 shift/reduce
+State 69 conflicts: 12 shift/reduce
+State 70 conflicts: 12 shift/reduce
+State 71 conflicts: 12 shift/reduce
+State 72 conflicts: 12 shift/reduce
+State 73 conflicts: 12 shift/reduce
+State 74 conflicts: 12 shift/reduce
+State 75 conflicts: 12 shift/reduce
+State 77 conflicts: 13 shift/reduce
+State 78 conflicts: 8 shift/reduce
+State 92 conflicts: 12 shift/reduce
+State 105 conflicts: 8 shift/reduce
+
+
+Grammar
+
+    0 $accept: program "end of file"
+
+    1 program: expr
+
+    2 decl: varDecl
+    3     | funcDecl
+
+    4 expr: stringExpr
+    5     | intExpr
+    6     | seqExpr
+    7     | var
+    8     | callExpr
+    9     | opExpr
+   10     | negExpr
+   11     | assignExpr
+   12     | ifExpr
+   13     | whileExpr
+   14     | forExpr
+   15     | breakExpr
+   16     | letExpr
+
+   17 varDecl: "var" "id" typeannotation ":=" expr
+
+   18 funcDecl: "function" "id" "(" params ")" typeannotation "=" expr
+
+   19 stringExpr: "string"
+
+   20 var: "id"
+
+   21 intExpr: "integer"
+
+   22 callExpr: "id" "(" arguments ")"
+
+   23 negExpr: "-" expr
+
+   24 opExpr: expr "+" expr
+   25       | expr "-" expr
+   26       | expr "*" expr
+   27       | expr "/" expr
+   28       | expr "=" expr
+   29       | expr "<>" expr
+   30       | expr "<" expr
+   31       | expr ">" expr
+   32       | expr "<=" expr
+   33       | expr ">=" expr
+   34       | expr "&" expr
+   35       | expr "|" expr
+
+   36 assignExpr: "id" ":=" expr
+
+   37 ifExpr: "if" expr "then" expr "else" expr
+   38       | "if" expr "then" expr
+
+   39 whileExpr: "while" expr "do" expr
+
+   40 forExpr: "for" "id" ":=" expr "to" expr "do" expr
+
+   41 breakExpr: "break"
+
+   42 letExpr: "let" decls "in" exprs "end"
+
+   43 seqExpr: "(" exprs ")"
+
+   44 exprs: ε
+   45      | nonemptyexprs
+
+   46 nonemptyexprs: expr
+   47              | nonemptyexprs ";" expr
+
+   48 arguments: ε
+   49          | nonemptyarguments
+
+   50 nonemptyarguments: expr
+   51                  | nonemptyarguments "," expr
+
+   52 params: ε
+   53       | nonemptyparams
+
+   54 nonemptyparams: param
+   55               | nonemptyparams "," param
+
+   56 decls: ε
+   57      | decls decl
+
+   58 param: "id" ":" "id"
+
+   59 typeannotation: ε
+   60               | ":" "id"
+
+
+Terminals, with rules where they appear
+
+    "end of file" (0) 0
+    error (256)
+    "," (258) 51 55
+    ":" (259) 58 60
+    ";" (260) 47
+    "(" (261) 18 22 43
+    ")" (262) 18 22 43
+    "{" (263)
+    "}" (264)
+    "+" (265) 24
+    "-" (266) 23 25
+    "*" (267) 26
+    "/" (268) 27
+    "=" (269) 18 28
+    "<>" (270) 29
+    "<" (271) 30
+    "<=" (272) 32
+    ">" (273) 31
+    ">=" (274) 33
+    "&" (275) 34
+    "|" (276) 35
+    ":=" (277) 17 36 40
+    "if" (278) 37 38
+    "then" (279) 37 38
+    "else" (280) 37
+    "while" (281) 39
+    "for" (282) 40
+    "to" (283) 40
+    "do" (284) 39 40
+    "let" (285) 42
+    "in" (286) 42
+    "end" (287) 42
+    "break" (288) 41
+    "function" (289) 18
+    "var" (290) 17
+    "uminus" (291)
+    "id" <Symbol> (292) 17 18 20 22 36 40 58 60
+    "string" <Symbol> (293) 19
+    "integer" <int> (294) 21
+    TYPE (295)
+    OF (296)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (42)
+        on left: 0
+    program <Expr *> (43)
+        on left: 1
+        on right: 0
+    decl <Decl *> (44)
+        on left: 2 3
+        on right: 57
+    expr <Expr *> (45)
+        on left: 4 5 6 7 8 9 10 11 12 13 14 15 16
+        on right: 1 17 18 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 46 47 50 51
+    varDecl <Decl *> (46)
+        on left: 17
+        on right: 2
+    funcDecl <Decl *> (47)
+        on left: 18
+        on right: 3
+    stringExpr <Expr *> (48)
+        on left: 19
+        on right: 4
+    var <Expr *> (49)
+        on left: 20
+        on right: 7
+    intExpr <Expr *> (50)
+        on left: 21
+        on right: 5
+    callExpr <Expr *> (51)
+        on left: 22
+        on right: 8
+    negExpr <Expr *> (52)
+        on left: 23
+        on right: 10
+    opExpr <Expr *> (53)
+        on left: 24 25 26 27 28 29 30 31 32 33 34 35
+        on right: 9
+    assignExpr <Expr *> (54)
+        on left: 36
+        on right: 11
+    ifExpr <Expr *> (55)
+        on left: 37 38
+        on right: 12
+    whileExpr <Expr *> (56)
+        on left: 39
+        on right: 13
+    forExpr <Expr *> (57)
+        on left: 40
+        on right: 14
+    breakExpr <Expr *> (58)
+        on left: 41
+        on right: 15
+    letExpr <Expr *> (59)
+        on left: 42
+        on right: 16
+    seqExpr <Expr *> (60)
+        on left: 43
+        on right: 6
+    exprs <std::vector<Expr *>> (61)
+        on left: 44 45
+        on right: 42 43
+    nonemptyexprs <std::vector<Expr *>> (62)
+        on left: 46 47
+        on right: 45 47
+    arguments <std::vector<Expr *>> (63)
+        on left: 48 49
+        on right: 22
+    nonemptyarguments <std::vector<Expr *>> (64)
+        on left: 50 51
+        on right: 49 51
+    params <std::vector<VarDecl *>> (65)
+        on left: 52 53
+        on right: 18
+    nonemptyparams <std::vector<VarDecl *>> (66)
+        on left: 54 55
+        on right: 53 55
+    decls <std::vector<Decl *>> (67)
+        on left: 56 57
+        on right: 42 57
+    param <VarDecl *> (68)
+        on left: 58
+        on right: 54 55
+    typeannotation <boost::optional<Symbol>> (69)
+        on left: 59 60
+        on right: 17 18
+
+
+State 0
+
+    0 $accept: • program "end of file"
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    program     go to state 11
+    expr        go to state 12
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 1
+
+   43 seqExpr: "(" • exprs ")"
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    $default  reduce using rule 44 (exprs)
+
+    expr           go to state 26
+    stringExpr     go to state 13
+    var            go to state 14
+    intExpr        go to state 15
+    callExpr       go to state 16
+    negExpr        go to state 17
+    opExpr         go to state 18
+    assignExpr     go to state 19
+    ifExpr         go to state 20
+    whileExpr      go to state 21
+    forExpr        go to state 22
+    breakExpr      go to state 23
+    letExpr        go to state 24
+    seqExpr        go to state 25
+    exprs          go to state 27
+    nonemptyexprs  go to state 28
+
+
+State 2
+
+   23 negExpr: "-" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 29
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 3
+
+   37 ifExpr: "if" • expr "then" expr "else" expr
+   38       | "if" • expr "then" expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 30
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 4
+
+   39 whileExpr: "while" • expr "do" expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 31
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 5
+
+   40 forExpr: "for" • "id" ":=" expr "to" expr "do" expr
+
+    "id"  shift, and go to state 32
+
+
+State 6
+
+   42 letExpr: "let" • decls "in" exprs "end"
+
+    $default  reduce using rule 56 (decls)
+
+    decls  go to state 33
+
+
+State 7
+
+   41 breakExpr: "break" •
+
+    $default  reduce using rule 41 (breakExpr)
+
+
+State 8
+
+   20 var: "id" •
+   22 callExpr: "id" • "(" arguments ")"
+   36 assignExpr: "id" • ":=" expr
+
+    "("   shift, and go to state 34
+    ":="  shift, and go to state 35
+
+    $default  reduce using rule 20 (var)
+
+
+State 9
+
+   19 stringExpr: "string" •
+
+    $default  reduce using rule 19 (stringExpr)
+
+
+State 10
+
+   21 intExpr: "integer" •
+
+    $default  reduce using rule 21 (intExpr)
+
+
+State 11
+
+    0 $accept: program • "end of file"
+
+    "end of file"  shift, and go to state 36
+
+
+State 12
+
+    1 program: expr •
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    $default  reduce using rule 1 (program)
+
+
+State 13
+
+    4 expr: stringExpr •
+
+    $default  reduce using rule 4 (expr)
+
+
+State 14
+
+    7 expr: var •
+
+    $default  reduce using rule 7 (expr)
+
+
+State 15
+
+    5 expr: intExpr •
+
+    $default  reduce using rule 5 (expr)
+
+
+State 16
+
+    8 expr: callExpr •
+
+    $default  reduce using rule 8 (expr)
+
+
+State 17
+
+   10 expr: negExpr •
+
+    $default  reduce using rule 10 (expr)
+
+
+State 18
+
+    9 expr: opExpr •
+
+    $default  reduce using rule 9 (expr)
+
+
+State 19
+
+   11 expr: assignExpr •
+
+    $default  reduce using rule 11 (expr)
+
+
+State 20
+
+   12 expr: ifExpr •
+
+    $default  reduce using rule 12 (expr)
+
+
+State 21
+
+   13 expr: whileExpr •
+
+    $default  reduce using rule 13 (expr)
+
+
+State 22
+
+   14 expr: forExpr •
+
+    $default  reduce using rule 14 (expr)
+
+
+State 23
+
+   15 expr: breakExpr •
+
+    $default  reduce using rule 15 (expr)
+
+
+State 24
+
+   16 expr: letExpr •
+
+    $default  reduce using rule 16 (expr)
+
+
+State 25
+
+    6 expr: seqExpr •
+
+    $default  reduce using rule 6 (expr)
+
+
+State 26
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   46 nonemptyexprs: expr •
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    $default  reduce using rule 46 (nonemptyexprs)
+
+
+State 27
+
+   43 seqExpr: "(" exprs • ")"
+
+    ")"  shift, and go to state 49
+
+
+State 28
+
+   45 exprs: nonemptyexprs •
+   47 nonemptyexprs: nonemptyexprs • ";" expr
+
+    ";"  shift, and go to state 50
+
+    $default  reduce using rule 45 (exprs)
+
+
+State 29
+
+   23 negExpr: "-" expr •
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "="       [reduce using rule 23 (negExpr)]
+    "<>"      [reduce using rule 23 (negExpr)]
+    "<"       [reduce using rule 23 (negExpr)]
+    "<="      [reduce using rule 23 (negExpr)]
+    ">"       [reduce using rule 23 (negExpr)]
+    ">="      [reduce using rule 23 (negExpr)]
+    "&"       [reduce using rule 23 (negExpr)]
+    "|"       [reduce using rule 23 (negExpr)]
+    $default  reduce using rule 23 (negExpr)
+
+
+State 30
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   37 ifExpr: "if" expr • "then" expr "else" expr
+   38       | "if" expr • "then" expr
+
+    "+"     shift, and go to state 37
+    "-"     shift, and go to state 38
+    "*"     shift, and go to state 39
+    "/"     shift, and go to state 40
+    "="     shift, and go to state 41
+    "<>"    shift, and go to state 42
+    "<"     shift, and go to state 43
+    "<="    shift, and go to state 44
+    ">"     shift, and go to state 45
+    ">="    shift, and go to state 46
+    "&"     shift, and go to state 47
+    "|"     shift, and go to state 48
+    "then"  shift, and go to state 51
+
+
+State 31
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   39 whileExpr: "while" expr • "do" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+    "do"  shift, and go to state 52
+
+
+State 32
+
+   40 forExpr: "for" "id" • ":=" expr "to" expr "do" expr
+
+    ":="  shift, and go to state 53
+
+
+State 33
+
+   42 letExpr: "let" decls • "in" exprs "end"
+   57 decls: decls • decl
+
+    "in"        shift, and go to state 54
+    "function"  shift, and go to state 55
+    "var"       shift, and go to state 56
+
+    decl      go to state 57
+    varDecl   go to state 58
+    funcDecl  go to state 59
+
+
+State 34
+
+   22 callExpr: "id" "(" • arguments ")"
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    $default  reduce using rule 48 (arguments)
+
+    expr               go to state 60
+    stringExpr         go to state 13
+    var                go to state 14
+    intExpr            go to state 15
+    callExpr           go to state 16
+    negExpr            go to state 17
+    opExpr             go to state 18
+    assignExpr         go to state 19
+    ifExpr             go to state 20
+    whileExpr          go to state 21
+    forExpr            go to state 22
+    breakExpr          go to state 23
+    letExpr            go to state 24
+    seqExpr            go to state 25
+    arguments          go to state 61
+    nonemptyarguments  go to state 62
+
+
+State 35
+
+   36 assignExpr: "id" ":=" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 63
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 36
+
+    0 $accept: program "end of file" •
+
+    $default  accept
+
+
+State 37
+
+   24 opExpr: expr "+" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 64
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 38
+
+   25 opExpr: expr "-" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 65
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 39
+
+   26 opExpr: expr "*" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 66
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 40
+
+   27 opExpr: expr "/" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 67
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 41
+
+   28 opExpr: expr "=" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 68
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 42
+
+   29 opExpr: expr "<>" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 69
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 43
+
+   30 opExpr: expr "<" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 70
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 44
+
+   32 opExpr: expr "<=" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 71
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 45
+
+   31 opExpr: expr ">" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 72
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 46
+
+   33 opExpr: expr ">=" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 73
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 47
+
+   34 opExpr: expr "&" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 74
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 48
+
+   35 opExpr: expr "|" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 75
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 49
+
+   43 seqExpr: "(" exprs ")" •
+
+    $default  reduce using rule 43 (seqExpr)
+
+
+State 50
+
+   47 nonemptyexprs: nonemptyexprs ";" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 76
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 51
+
+   37 ifExpr: "if" expr "then" • expr "else" expr
+   38       | "if" expr "then" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 77
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 52
+
+   39 whileExpr: "while" expr "do" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 78
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 53
+
+   40 forExpr: "for" "id" ":=" • expr "to" expr "do" expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 79
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 54
+
+   42 letExpr: "let" decls "in" • exprs "end"
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    $default  reduce using rule 44 (exprs)
+
+    expr           go to state 26
+    stringExpr     go to state 13
+    var            go to state 14
+    intExpr        go to state 15
+    callExpr       go to state 16
+    negExpr        go to state 17
+    opExpr         go to state 18
+    assignExpr     go to state 19
+    ifExpr         go to state 20
+    whileExpr      go to state 21
+    forExpr        go to state 22
+    breakExpr      go to state 23
+    letExpr        go to state 24
+    seqExpr        go to state 25
+    exprs          go to state 80
+    nonemptyexprs  go to state 28
+
+
+State 55
+
+   18 funcDecl: "function" • "id" "(" params ")" typeannotation "=" expr
+
+    "id"  shift, and go to state 81
+
+
+State 56
+
+   17 varDecl: "var" • "id" typeannotation ":=" expr
+
+    "id"  shift, and go to state 82
+
+
+State 57
+
+   57 decls: decls decl •
+
+    $default  reduce using rule 57 (decls)
+
+
+State 58
+
+    2 decl: varDecl •
+
+    $default  reduce using rule 2 (decl)
+
+
+State 59
+
+    3 decl: funcDecl •
+
+    $default  reduce using rule 3 (decl)
+
+
+State 60
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   50 nonemptyarguments: expr •
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    $default  reduce using rule 50 (nonemptyarguments)
+
+
+State 61
+
+   22 callExpr: "id" "(" arguments • ")"
+
+    ")"  shift, and go to state 83
+
+
+State 62
+
+   49 arguments: nonemptyarguments •
+   51 nonemptyarguments: nonemptyarguments • "," expr
+
+    ","  shift, and go to state 84
+
+    $default  reduce using rule 49 (arguments)
+
+
+State 63
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   36 assignExpr: "id" ":=" expr •
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "="       [reduce using rule 36 (assignExpr)]
+    "<>"      [reduce using rule 36 (assignExpr)]
+    "<"       [reduce using rule 36 (assignExpr)]
+    "<="      [reduce using rule 36 (assignExpr)]
+    ">"       [reduce using rule 36 (assignExpr)]
+    ">="      [reduce using rule 36 (assignExpr)]
+    "&"       [reduce using rule 36 (assignExpr)]
+    "|"       [reduce using rule 36 (assignExpr)]
+    $default  reduce using rule 36 (assignExpr)
+
+
+State 64
+
+   24 opExpr: expr • "+" expr
+   24       | expr "+" expr •
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "="       [reduce using rule 24 (opExpr)]
+    "<>"      [reduce using rule 24 (opExpr)]
+    "<"       [reduce using rule 24 (opExpr)]
+    "<="      [reduce using rule 24 (opExpr)]
+    ">"       [reduce using rule 24 (opExpr)]
+    ">="      [reduce using rule 24 (opExpr)]
+    "&"       [reduce using rule 24 (opExpr)]
+    "|"       [reduce using rule 24 (opExpr)]
+    $default  reduce using rule 24 (opExpr)
+
+
+State 65
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   25       | expr "-" expr •
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "="       [reduce using rule 25 (opExpr)]
+    "<>"      [reduce using rule 25 (opExpr)]
+    "<"       [reduce using rule 25 (opExpr)]
+    "<="      [reduce using rule 25 (opExpr)]
+    ">"       [reduce using rule 25 (opExpr)]
+    ">="      [reduce using rule 25 (opExpr)]
+    "&"       [reduce using rule 25 (opExpr)]
+    "|"       [reduce using rule 25 (opExpr)]
+    $default  reduce using rule 25 (opExpr)
+
+
+State 66
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   26       | expr "*" expr •
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "="       [reduce using rule 26 (opExpr)]
+    "<>"      [reduce using rule 26 (opExpr)]
+    "<"       [reduce using rule 26 (opExpr)]
+    "<="      [reduce using rule 26 (opExpr)]
+    ">"       [reduce using rule 26 (opExpr)]
+    ">="      [reduce using rule 26 (opExpr)]
+    "&"       [reduce using rule 26 (opExpr)]
+    "|"       [reduce using rule 26 (opExpr)]
+    $default  reduce using rule 26 (opExpr)
+
+
+State 67
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   27       | expr "/" expr •
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "="       [reduce using rule 27 (opExpr)]
+    "<>"      [reduce using rule 27 (opExpr)]
+    "<"       [reduce using rule 27 (opExpr)]
+    "<="      [reduce using rule 27 (opExpr)]
+    ">"       [reduce using rule 27 (opExpr)]
+    ">="      [reduce using rule 27 (opExpr)]
+    "&"       [reduce using rule 27 (opExpr)]
+    "|"       [reduce using rule 27 (opExpr)]
+    $default  reduce using rule 27 (opExpr)
+
+
+State 68
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   28       | expr "=" expr •
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "+"       [reduce using rule 28 (opExpr)]
+    "-"       [reduce using rule 28 (opExpr)]
+    "*"       [reduce using rule 28 (opExpr)]
+    "/"       [reduce using rule 28 (opExpr)]
+    "="       [reduce using rule 28 (opExpr)]
+    "<>"      [reduce using rule 28 (opExpr)]
+    "<"       [reduce using rule 28 (opExpr)]
+    "<="      [reduce using rule 28 (opExpr)]
+    ">"       [reduce using rule 28 (opExpr)]
+    ">="      [reduce using rule 28 (opExpr)]
+    "&"       [reduce using rule 28 (opExpr)]
+    "|"       [reduce using rule 28 (opExpr)]
+    $default  reduce using rule 28 (opExpr)
+
+
+State 69
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   29       | expr "<>" expr •
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "+"       [reduce using rule 29 (opExpr)]
+    "-"       [reduce using rule 29 (opExpr)]
+    "*"       [reduce using rule 29 (opExpr)]
+    "/"       [reduce using rule 29 (opExpr)]
+    "="       [reduce using rule 29 (opExpr)]
+    "<>"      [reduce using rule 29 (opExpr)]
+    "<"       [reduce using rule 29 (opExpr)]
+    "<="      [reduce using rule 29 (opExpr)]
+    ">"       [reduce using rule 29 (opExpr)]
+    ">="      [reduce using rule 29 (opExpr)]
+    "&"       [reduce using rule 29 (opExpr)]
+    "|"       [reduce using rule 29 (opExpr)]
+    $default  reduce using rule 29 (opExpr)
+
+
+State 70
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   30       | expr "<" expr •
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "+"       [reduce using rule 30 (opExpr)]
+    "-"       [reduce using rule 30 (opExpr)]
+    "*"       [reduce using rule 30 (opExpr)]
+    "/"       [reduce using rule 30 (opExpr)]
+    "="       [reduce using rule 30 (opExpr)]
+    "<>"      [reduce using rule 30 (opExpr)]
+    "<"       [reduce using rule 30 (opExpr)]
+    "<="      [reduce using rule 30 (opExpr)]
+    ">"       [reduce using rule 30 (opExpr)]
+    ">="      [reduce using rule 30 (opExpr)]
+    "&"       [reduce using rule 30 (opExpr)]
+    "|"       [reduce using rule 30 (opExpr)]
+    $default  reduce using rule 30 (opExpr)
+
+
+State 71
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   32       | expr "<=" expr •
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "+"       [reduce using rule 32 (opExpr)]
+    "-"       [reduce using rule 32 (opExpr)]
+    "*"       [reduce using rule 32 (opExpr)]
+    "/"       [reduce using rule 32 (opExpr)]
+    "="       [reduce using rule 32 (opExpr)]
+    "<>"      [reduce using rule 32 (opExpr)]
+    "<"       [reduce using rule 32 (opExpr)]
+    "<="      [reduce using rule 32 (opExpr)]
+    ">"       [reduce using rule 32 (opExpr)]
+    ">="      [reduce using rule 32 (opExpr)]
+    "&"       [reduce using rule 32 (opExpr)]
+    "|"       [reduce using rule 32 (opExpr)]
+    $default  reduce using rule 32 (opExpr)
+
+
+State 72
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   31       | expr ">" expr •
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "+"       [reduce using rule 31 (opExpr)]
+    "-"       [reduce using rule 31 (opExpr)]
+    "*"       [reduce using rule 31 (opExpr)]
+    "/"       [reduce using rule 31 (opExpr)]
+    "="       [reduce using rule 31 (opExpr)]
+    "<>"      [reduce using rule 31 (opExpr)]
+    "<"       [reduce using rule 31 (opExpr)]
+    "<="      [reduce using rule 31 (opExpr)]
+    ">"       [reduce using rule 31 (opExpr)]
+    ">="      [reduce using rule 31 (opExpr)]
+    "&"       [reduce using rule 31 (opExpr)]
+    "|"       [reduce using rule 31 (opExpr)]
+    $default  reduce using rule 31 (opExpr)
+
+
+State 73
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   33       | expr ">=" expr •
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "+"       [reduce using rule 33 (opExpr)]
+    "-"       [reduce using rule 33 (opExpr)]
+    "*"       [reduce using rule 33 (opExpr)]
+    "/"       [reduce using rule 33 (opExpr)]
+    "="       [reduce using rule 33 (opExpr)]
+    "<>"      [reduce using rule 33 (opExpr)]
+    "<"       [reduce using rule 33 (opExpr)]
+    "<="      [reduce using rule 33 (opExpr)]
+    ">"       [reduce using rule 33 (opExpr)]
+    ">="      [reduce using rule 33 (opExpr)]
+    "&"       [reduce using rule 33 (opExpr)]
+    "|"       [reduce using rule 33 (opExpr)]
+    $default  reduce using rule 33 (opExpr)
+
+
+State 74
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   34       | expr "&" expr •
+   35       | expr • "|" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "+"       [reduce using rule 34 (opExpr)]
+    "-"       [reduce using rule 34 (opExpr)]
+    "*"       [reduce using rule 34 (opExpr)]
+    "/"       [reduce using rule 34 (opExpr)]
+    "="       [reduce using rule 34 (opExpr)]
+    "<>"      [reduce using rule 34 (opExpr)]
+    "<"       [reduce using rule 34 (opExpr)]
+    "<="      [reduce using rule 34 (opExpr)]
+    ">"       [reduce using rule 34 (opExpr)]
+    ">="      [reduce using rule 34 (opExpr)]
+    "&"       [reduce using rule 34 (opExpr)]
+    "|"       [reduce using rule 34 (opExpr)]
+    $default  reduce using rule 34 (opExpr)
+
+
+State 75
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   35       | expr "|" expr •
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "+"       [reduce using rule 35 (opExpr)]
+    "-"       [reduce using rule 35 (opExpr)]
+    "*"       [reduce using rule 35 (opExpr)]
+    "/"       [reduce using rule 35 (opExpr)]
+    "="       [reduce using rule 35 (opExpr)]
+    "<>"      [reduce using rule 35 (opExpr)]
+    "<"       [reduce using rule 35 (opExpr)]
+    "<="      [reduce using rule 35 (opExpr)]
+    ">"       [reduce using rule 35 (opExpr)]
+    ">="      [reduce using rule 35 (opExpr)]
+    "&"       [reduce using rule 35 (opExpr)]
+    "|"       [reduce using rule 35 (opExpr)]
+    $default  reduce using rule 35 (opExpr)
+
+
+State 76
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   47 nonemptyexprs: nonemptyexprs ";" expr •
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    $default  reduce using rule 47 (nonemptyexprs)
+
+
+State 77
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   37 ifExpr: "if" expr "then" expr • "else" expr
+   38       | "if" expr "then" expr •
+
+    "+"     shift, and go to state 37
+    "-"     shift, and go to state 38
+    "*"     shift, and go to state 39
+    "/"     shift, and go to state 40
+    "="     shift, and go to state 41
+    "<>"    shift, and go to state 42
+    "<"     shift, and go to state 43
+    "<="    shift, and go to state 44
+    ">"     shift, and go to state 45
+    ">="    shift, and go to state 46
+    "&"     shift, and go to state 47
+    "|"     shift, and go to state 48
+    "else"  shift, and go to state 85
+
+    "+"       [reduce using rule 38 (ifExpr)]
+    "-"       [reduce using rule 38 (ifExpr)]
+    "*"       [reduce using rule 38 (ifExpr)]
+    "/"       [reduce using rule 38 (ifExpr)]
+    "="       [reduce using rule 38 (ifExpr)]
+    "<>"      [reduce using rule 38 (ifExpr)]
+    "<"       [reduce using rule 38 (ifExpr)]
+    "<="      [reduce using rule 38 (ifExpr)]
+    ">"       [reduce using rule 38 (ifExpr)]
+    ">="      [reduce using rule 38 (ifExpr)]
+    "&"       [reduce using rule 38 (ifExpr)]
+    "|"       [reduce using rule 38 (ifExpr)]
+    "else"    [reduce using rule 38 (ifExpr)]
+    $default  reduce using rule 38 (ifExpr)
+
+
+State 78
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   39 whileExpr: "while" expr "do" expr •
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "="       [reduce using rule 39 (whileExpr)]
+    "<>"      [reduce using rule 39 (whileExpr)]
+    "<"       [reduce using rule 39 (whileExpr)]
+    "<="      [reduce using rule 39 (whileExpr)]
+    ">"       [reduce using rule 39 (whileExpr)]
+    ">="      [reduce using rule 39 (whileExpr)]
+    "&"       [reduce using rule 39 (whileExpr)]
+    "|"       [reduce using rule 39 (whileExpr)]
+    $default  reduce using rule 39 (whileExpr)
+
+
+State 79
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   40 forExpr: "for" "id" ":=" expr • "to" expr "do" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+    "to"  shift, and go to state 86
+
+
+State 80
+
+   42 letExpr: "let" decls "in" exprs • "end"
+
+    "end"  shift, and go to state 87
+
+
+State 81
+
+   18 funcDecl: "function" "id" • "(" params ")" typeannotation "=" expr
+
+    "("  shift, and go to state 88
+
+
+State 82
+
+   17 varDecl: "var" "id" • typeannotation ":=" expr
+
+    ":"  shift, and go to state 89
+
+    $default  reduce using rule 59 (typeannotation)
+
+    typeannotation  go to state 90
+
+
+State 83
+
+   22 callExpr: "id" "(" arguments ")" •
+
+    $default  reduce using rule 22 (callExpr)
+
+
+State 84
+
+   51 nonemptyarguments: nonemptyarguments "," • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 91
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 85
+
+   37 ifExpr: "if" expr "then" expr "else" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 92
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 86
+
+   40 forExpr: "for" "id" ":=" expr "to" • expr "do" expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 93
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 87
+
+   42 letExpr: "let" decls "in" exprs "end" •
+
+    $default  reduce using rule 42 (letExpr)
+
+
+State 88
+
+   18 funcDecl: "function" "id" "(" • params ")" typeannotation "=" expr
+
+    "id"  shift, and go to state 94
+
+    $default  reduce using rule 52 (params)
+
+    params          go to state 95
+    nonemptyparams  go to state 96
+    param           go to state 97
+
+
+State 89
+
+   60 typeannotation: ":" • "id"
+
+    "id"  shift, and go to state 98
+
+
+State 90
+
+   17 varDecl: "var" "id" typeannotation • ":=" expr
+
+    ":="  shift, and go to state 99
+
+
+State 91
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   51 nonemptyarguments: nonemptyarguments "," expr •
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    $default  reduce using rule 51 (nonemptyarguments)
+
+
+State 92
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   37 ifExpr: "if" expr "then" expr "else" expr •
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "+"       [reduce using rule 37 (ifExpr)]
+    "-"       [reduce using rule 37 (ifExpr)]
+    "*"       [reduce using rule 37 (ifExpr)]
+    "/"       [reduce using rule 37 (ifExpr)]
+    "="       [reduce using rule 37 (ifExpr)]
+    "<>"      [reduce using rule 37 (ifExpr)]
+    "<"       [reduce using rule 37 (ifExpr)]
+    "<="      [reduce using rule 37 (ifExpr)]
+    ">"       [reduce using rule 37 (ifExpr)]
+    ">="      [reduce using rule 37 (ifExpr)]
+    "&"       [reduce using rule 37 (ifExpr)]
+    "|"       [reduce using rule 37 (ifExpr)]
+    $default  reduce using rule 37 (ifExpr)
+
+
+State 93
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   40 forExpr: "for" "id" ":=" expr "to" expr • "do" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+    "do"  shift, and go to state 100
+
+
+State 94
+
+   58 param: "id" • ":" "id"
+
+    ":"  shift, and go to state 101
+
+
+State 95
+
+   18 funcDecl: "function" "id" "(" params • ")" typeannotation "=" expr
+
+    ")"  shift, and go to state 102
+
+
+State 96
+
+   53 params: nonemptyparams •
+   55 nonemptyparams: nonemptyparams • "," param
+
+    ","  shift, and go to state 103
+
+    $default  reduce using rule 53 (params)
+
+
+State 97
+
+   54 nonemptyparams: param •
+
+    $default  reduce using rule 54 (nonemptyparams)
+
+
+State 98
+
+   60 typeannotation: ":" "id" •
+
+    $default  reduce using rule 60 (typeannotation)
+
+
+State 99
+
+   17 varDecl: "var" "id" typeannotation ":=" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 104
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 100
+
+   40 forExpr: "for" "id" ":=" expr "to" expr "do" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 105
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 101
+
+   58 param: "id" ":" • "id"
+
+    "id"  shift, and go to state 106
+
+
+State 102
+
+   18 funcDecl: "function" "id" "(" params ")" • typeannotation "=" expr
+
+    ":"  shift, and go to state 89
+
+    $default  reduce using rule 59 (typeannotation)
+
+    typeannotation  go to state 107
+
+
+State 103
+
+   55 nonemptyparams: nonemptyparams "," • param
+
+    "id"  shift, and go to state 94
+
+    param  go to state 108
+
+
+State 104
+
+   17 varDecl: "var" "id" typeannotation ":=" expr •
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    $default  reduce using rule 17 (varDecl)
+
+
+State 105
+
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+   40 forExpr: "for" "id" ":=" expr "to" expr "do" expr •
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    "="       [reduce using rule 40 (forExpr)]
+    "<>"      [reduce using rule 40 (forExpr)]
+    "<"       [reduce using rule 40 (forExpr)]
+    "<="      [reduce using rule 40 (forExpr)]
+    ">"       [reduce using rule 40 (forExpr)]
+    ">="      [reduce using rule 40 (forExpr)]
+    "&"       [reduce using rule 40 (forExpr)]
+    "|"       [reduce using rule 40 (forExpr)]
+    $default  reduce using rule 40 (forExpr)
+
+
+State 106
+
+   58 param: "id" ":" "id" •
+
+    $default  reduce using rule 58 (param)
+
+
+State 107
+
+   18 funcDecl: "function" "id" "(" params ")" typeannotation • "=" expr
+
+    "="  shift, and go to state 109
+
+
+State 108
+
+   55 nonemptyparams: nonemptyparams "," param •
+
+    $default  reduce using rule 55 (nonemptyparams)
+
+
+State 109
+
+   18 funcDecl: "function" "id" "(" params ")" typeannotation "=" • expr
+
+    "("        shift, and go to state 1
+    "-"        shift, and go to state 2
+    "if"       shift, and go to state 3
+    "while"    shift, and go to state 4
+    "for"      shift, and go to state 5
+    "let"      shift, and go to state 6
+    "break"    shift, and go to state 7
+    "id"       shift, and go to state 8
+    "string"   shift, and go to state 9
+    "integer"  shift, and go to state 10
+
+    expr        go to state 110
+    stringExpr  go to state 13
+    var         go to state 14
+    intExpr     go to state 15
+    callExpr    go to state 16
+    negExpr     go to state 17
+    opExpr      go to state 18
+    assignExpr  go to state 19
+    ifExpr      go to state 20
+    whileExpr   go to state 21
+    forExpr     go to state 22
+    breakExpr   go to state 23
+    letExpr     go to state 24
+    seqExpr     go to state 25
+
+
+State 110
+
+   18 funcDecl: "function" "id" "(" params ")" typeannotation "=" expr •
+   24 opExpr: expr • "+" expr
+   25       | expr • "-" expr
+   26       | expr • "*" expr
+   27       | expr • "/" expr
+   28       | expr • "=" expr
+   29       | expr • "<>" expr
+   30       | expr • "<" expr
+   31       | expr • ">" expr
+   32       | expr • "<=" expr
+   33       | expr • ">=" expr
+   34       | expr • "&" expr
+   35       | expr • "|" expr
+
+    "+"   shift, and go to state 37
+    "-"   shift, and go to state 38
+    "*"   shift, and go to state 39
+    "/"   shift, and go to state 40
+    "="   shift, and go to state 41
+    "<>"  shift, and go to state 42
+    "<"   shift, and go to state 43
+    "<="  shift, and go to state 44
+    ">"   shift, and go to state 45
+    ">="  shift, and go to state 46
+    "&"   shift, and go to state 47
+    "|"   shift, and go to state 48
+
+    $default  reduce using rule 18 (funcDecl)
